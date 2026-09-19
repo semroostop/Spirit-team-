@@ -1,0 +1,397 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPIRIT.team | Private Standoff 2 Software</title>
+    <!-- Подключаем современные премиальные шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Переменные для легкой настройки цветов */
+        :root {
+            --bg-color: #050505;
+            --surface-color: rgba(20, 20, 22, 0.7);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --accent-color: #e11d48; /* Глубокий красный/малиновый акцент */
+            --accent-glow: rgba(225, 29, 72, 0.4);
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Легкий фоновый градиент для глубины */
+            background-image: radial-gradient(circle at 50% -20%, #1f0b11 0%, var(--bg-color) 70%);
+            background-attachment: fixed;
+        }
+
+        /* --- ВЕРХНЯЯ ПОЛОСА (HEADER) --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        /* --- ГЛАВНЫЙ КОНТЕЙНЕР --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 120px 20px 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- БЛОК ЗАГОЛОВКА И СТАТУСА --- */
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 42px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            background: linear-gradient(180deg, #fff 0%, #b3b3b3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .badges {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap; /* Для мобильных экранов */
+        }
+
+        .badge {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .badge.success::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #10b981;
+            animation: pulse 2s infinite;
+        }
+
+        .badge.version::before {
+            content: 'v';
+            color: var(--accent-color);
+        }
+
+        /* --- БЛОК ОПИСАНИЯ И ФОТО --- */
+        .content-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        /* Блок с текстом */
+        .description-box {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .description-box h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+            text-transform: uppercase;
+        }
+
+        .description-box p {
+            color: var(--text-main);
+            font-size: 17px;
+            font-weight: 300;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .highlight-text {
+            color: var(--accent-color);
+            font-weight: 600;
+            background: rgba(225, 29, 72, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .price-tag {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: #10b981; /* Зеленый цвет для цен */
+            margin: 20px 0;
+            background: rgba(16, 185, 129, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        /* Сетка для фотографий */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .image-slot {
+            background: #111111;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .image-slot:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 25px var(--accent-glow);
+        }
+
+        .image-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 1; /* Картинки теперь видимы */
+            transition: transform 0.5s ease;
+        }
+
+        .image-slot:hover img {
+            transform: scale(1.08); /* Эффект зума при наведении на фото */
+        }
+
+        /* --- КНОПКА СКАЧАТЬ --- */
+        .download-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+            color: white;
+            text-decoration: none;
+            width: 100%;
+            padding: 20px;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            box-shadow: 0 10px 30px var(--accent-glow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: skewX(-20deg);
+            transition: 0.5s;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(225, 29, 72, 0.6);
+        }
+
+        .download-btn:hover::after {
+            left: 150%;
+        }
+
+        .download-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: white;
+        }
+
+        .secure-text {
+            margin-top: 15px;
+            font-size: 13px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* --- АНИМАЦИИ --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* Адаптация под телефоны */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 28px; }
+            .description-box { padding: 25px; }
+            .image-slot { height: 180px; }
+            .download-btn { font-size: 16px; padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ВЕРХНЯЯ ПОЛОСА -->
+    <header>
+        <div class="logo">SPIRIT<span>.team</span></div>
+    </header>
+
+    <div class="container">
+        <!-- ЗАГОЛОВОК И СТАТУС -->
+        <div class="hero">
+            <h1>Private Standoff 2 Mod</h1>
+            <div class="badges">
+                <div class="badge success">UNDETECTED</div>
+                <div class="badge version">0.30.0+ Bypassed</div>
+                <div class="badge">🔥 Лучшая цена</div>
+            </div>
+        </div>
+
+        <!-- ОСНОВНОЙ КОНТЕНТ (Описание и скриншоты) -->
+        <div class="content-section">
+            
+            <!-- Описание -->
+            <div class="description-box">
+                <h2>Особенности скрипта</h2>
+                
+                <p>Привет! Давно хотел погонять с красивыми читами? Но бесплатные читы -- это лишь пробный период, а платные стоят по 200 руб.</p>
+                
+                <div class="price-tag">
+                    Полные читы -- 50 руб.<br>
+                    Отдельные функции -- 25 руб.
+                </div>
+                
+                <p>Залетай ко мне в Telegram-канал! Я продам тебе софт по невероятно низкой цене.</p>
+                
+                <p>Ещё в этих читах есть <span class="highlight-text">мощная защита от бана</span>. Шанс того, что тебя забанят, равен всего 5% -- это невероятно маленький шанс благодаря нашей системе обхода! Можешь просто гонять с читами и не волноваться.</p>
+
+                <p style="margin-top: 25px; font-weight: 600;">
+                    Просто залетай в Telegram-канал, пиши по поводу читов, переводи и получай свой файл.<br>
+                    <span style="color: #10b981;">100% гарантия.</span>
+                </p>
+            </div>
+
+            <!-- Фотографии функций чита -->
+            <div class="image-gallery">
+                <div class="image-slot">
+                    <img src="1000000359.png" alt="Функция Chams">
+                </div>
+                <div class="image-slot">
+                    <img src="1000000358.png" alt="Функция Wallhack">
+                </div>
+                <div class="image-slot">
+                    <img src="1000000357.webp" alt="Функция ESP Tracer">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- КНОПКА СКАЧАТЬ -->
+        <div class="download-wrapper">
+            <!-- Твоя ссылка на Telegram -->
+            <a href="https://t.me/SemRoos" class="download-btn" target="_blank">
+                <!-- Иконка скачивания -->
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                </svg>
+                Перейти в Telegram и купить
+            </a>
+            <div class="secure-text">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#666"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                Безопасная сделка через Telegram
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
